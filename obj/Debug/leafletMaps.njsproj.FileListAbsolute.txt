@@ -1,0 +1,3 @@
+C:\Users\Wills\source\repos\leafletMaps\leafletMaps\obj\Debug\leafletMaps.njsproj.AssemblyReference.cache
+C:\Users\Wills\source\repos\leafletMaps\leafletMaps\obj\Debug\leafletMaps.njsproj.CoreCompileInputs.cache
+C:\Users\Wills\source\repos\leafletMaps\leafletMaps\bin\Microsoft.NodejsTools.WebRole.dll
