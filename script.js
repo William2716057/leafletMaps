@@ -1,15 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the map and set its view to a chosen geographical coordinates and zoom level
+    // Initialize  map and set  view to a default location 
     var map = L.map('map').setView([51.505, -0.09], 13);
 
-    // Load and display tile layer on the map (OpenStreetMap tiles)
+    // Load and display tile layer on the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Add a marker to the map
-    var marker = L.marker([51.505, -0.09]).addTo(map);
+    var marker;
+    document.getElementById('coordinates-form').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    // Add a popup to the marker
-    marker.bindPopup("<b>Popup!</b>").openPopup();
+        var lat = parseFloat(document.getElementById('latitude').value);
+        var lon = parseFloat(document.getElementById('longitude').value);
+
+        if (!isNaN(lat) && !isNaN(lon)) {
+            // Update the map view
+            map.setView([lat, lon], 13);
+
+            //Remove old marker
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            // Add new marker
+            marker = L.marker([lat, lon]).addTo(map);
+
+            //Add popup
+            marker.bindPopup(`<b>Coordinates:</b><br>Latitude: ${lat}<br>Longitude: ${lon}`).openPopup();
+        } else {
+            alert('Please enter valid coordinates.');
+        }
+    });
 });
